@@ -1,6 +1,4 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -35,14 +33,12 @@ public class Main {
         }
     }
     public static boolean check(int idx){
-        for (int i = 0; i <= idx; i++) {
-            int sum = 0;
-            for (int j = i; j <= idx; j++) {
-                sum += result[j];
-                if (sign[i][j] != (sum == 0 ? '0' : (sum > 0 ? '+' : '-'))) {
-                    return false;
-                }
-            }
+        int temp = 0;
+//        새로 추가한 index가 문제를 발생하는지 파악. 0~index까지를 다 더해주고, 하나씩 1~index, 2~index, ... 의 sum을 sign과 비교.
+        for(int i =0; i<= idx; i++) temp += result[i];
+        for(int i = 0; i<=idx; i++){
+            if(sign[i][idx] != (temp == 0? '0' : (temp > 0?'+':'-'))) return false;
+            temp -= result[i];
         }
         return true;
     }
