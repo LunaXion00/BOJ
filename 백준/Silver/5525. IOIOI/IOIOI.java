@@ -13,9 +13,21 @@ class Main {
         for(int i = 0; i<N; i++) sb.append("IO");
         sb.append("I");
         String find = sb.toString();
-        int answer = 0;
-        for(int i = 0; i<M-find.length()+1; i++){
-            if(s.substring(i, i+find.length()).equals(find)) answer++;
+        int answer = 1;
+        int start = s.indexOf(find);
+        if(start == -1) answer = 0;
+        else{
+            while(start < M-find.length()+1){
+                int end = start + find.length();
+                if(end + 2 <= M && s.substring(end, end+2).equals("OI")) {
+                    answer++;
+                    start += 2;
+                } else{
+                    start = s.indexOf(find, start+1);
+                    if(start == -1) break;
+                    else answer++;
+                }
+            }
         }
         System.out.println(answer);
     }
