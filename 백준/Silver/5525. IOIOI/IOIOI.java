@@ -9,26 +9,12 @@ class Main {
         st = new StringTokenizer(br.readLine());
         int M = Integer.parseInt(st.nextToken());
         String s = br.readLine();
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i<N; i++) sb.append("IO");
-        sb.append("I");
-        String find = sb.toString();
-        int answer = 1;
-        int start = s.indexOf(find);
-        if(start == -1) answer = 0;
-        else{
-            while(start < M-find.length()+1){
-                int end = start + find.length();
-                if(end + 2 <= M && s.substring(end, end+2).equals("OI")) {
-                    answer++;
-                    start += 2;
-                } else{
-                    start = s.indexOf(find, start+1);
-                    if(start == -1) break;
-                    else answer++;
-                }
-            }
+        int[] check = new int[M];
+        int answer = 0;
+        for(int i = 1; i<M-1;i++){
+            if(s.charAt(i) == 'O' && s.charAt(i+1) == 'I') check[i+1] = check[i-1]+1;
+            if(check[i+1] >= N && s.charAt(i-2*N+1) == 'I') answer++;
         }
-        System.out.println(answer);
+        System.out.print(answer);
     }
 }
