@@ -1,14 +1,15 @@
 import java.util.Scanner;
 import java.util.*;
+import java.io.*;
 
 class Solution {
     public static void main(String args[]) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        int T;
-        T=sc.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int T = Integer.parseInt(st.nextToken());
 
         for(int t = 1; t <= T; t++) {
-            String cards = sc.next();
+            String cards = br.readLine();
             int N = cards.length();
             long count = 0;
             int index = N;
